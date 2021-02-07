@@ -1,0 +1,187 @@
+
+δΞ[2021-02-07T10:04:03.077114+0300] [ERROR] An error has been caught in function 'decorated_view', process 'MainProcess' (40981), thread 'MainThread' (140418215950144):
+Traceback (most recent call last):
+
+  File "/usr/share/passenger/helper-scripts/wsgi-loader.py", line 391, in <module>
+    handler.main_loop()
+    │       └ <function RequestHandler.main_loop at 0x7fb5a05e0290>
+    └ <__main__.RequestHandler object at 0x7fb5a05e2710>
+
+  File "/usr/share/passenger/helper-scripts/wsgi-loader.py", line 199, in main_loop
+    socket_hijacked = self.process_request(env, input_stream, client)
+                      │    │               │    │             └ <socket.socket fd=6, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=/var/run/passenger-instreg/pas...
+                      │    │               │    └ <socket.socket fd=6, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=/var/run/passenger-instreg/pas...
+                      │    │               └ {'REQUEST_URI': '/admin/checkLogs', 'PATH_INFO': '/admin/checkLogs', 'SCRIPT_NAME': '', 'QUERY_STRING': '', 'REQUEST_METHOD':...
+                      │    └ <function RequestHandler.process_request at 0x7fb5a05e04d0>
+                      └ <__main__.RequestHandler object at 0x7fb5a05e2710>
+
+  File "/usr/share/passenger/helper-scripts/wsgi-loader.py", line 333, in process_request
+    result = self.app(env, start_response)
+             │    │   │    └ <function RequestHandler.process_request.<locals>.start_response at 0x7fb59bb4de60>
+             │    │   └ {'REQUEST_URI': '/admin/checkLogs', 'PATH_INFO': '/admin/checkLogs', 'SCRIPT_NAME': '', 'QUERY_STRING': '', 'REQUEST_METHOD':...
+             │    └ <Flask '__init__'>
+             └ <__main__.RequestHandler object at 0x7fb5a05e2710>
+
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function RequestHandler.process_request.<locals>.start_response at 0x7fb59bb4de60>
+           │    │        └ {'REQUEST_URI': '/admin/checkLogs', 'PATH_INFO': '/admin/checkLogs', 'SCRIPT_NAME': '', 'QUERY_STRING': '', 'REQUEST_METHOD':...
+           │    └ <function Flask.wsgi_app at 0x7fb59d37b7a0>
+           └ <Flask '__init__'>
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x7fb59d378e60>
+               └ <Flask '__init__'>
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x7fb59d378dd0>
+         └ <Flask '__init__'>
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+           │    │              │    │           │   └ {}
+           │    │              │    │           └ <Request 'https://site-hunter.ru/admin/checkLogs' [GET]>
+           │    │              │    └ 'Logs'
+           │    │              └ <Rule '/admin/checkLogs' (GET, OPTIONS, HEAD) -> Logs>
+           │    └ {'static': <bound method _PackageBoundObject.send_static_file of <Flask '__init__'>>, 'admin_index': <function admin_index at...
+           └ <Flask '__init__'>
+> File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+           │     │       └ {}
+           │     └ ()
+           └ <function Logs at 0x7fb599b1fa70>
+
+  File "/var/www/u1087101/data/www/site-hunter.ru/admin.py", line 390, in Logs
+    logs_text = getLogs('log.txt')
+                └ <function getLogs at 0x7fb599afe440>
+
+  File "/var/www/u1087101/data/www/site-hunter.ru/log.py", line 30, in getLogs
+    s.append[i]
+    │ │      └ ''
+    │ └ <method 'append' of 'list' objects>
+    └ []
+
+TypeError: 'builtin_function_or_method' object is not subscriptable
+
+δΞ[2021-02-07T10:05:28.546475+0300] [INFO] ζRiblax: Администратор: Riblax добавил нового администратора: Ryize на должность: 1
+
+δΞ[2021-02-07T10:05:35.770018+0300] [INFO] ζRiblax: Администратор: Riblax удалил другого администратора: Ryize
+
+δΞ[2021-02-07T10:15:36.824077+0300] [INFO] ζRiblax: Администратор: Riblax удалил элемент рейтинга: Swift
+
+δΞ[2021-02-07T10:15:46.602735+0300] [INFO] ζRiblax: Администратор: Riblax добавил элемент рейтинга: Kotlin
+
+δΞ[2021-02-07T11:28:55.780006+0300] [ERROR] An error has been caught in function 'dispatch_request', process 'MainProcess' (191478), thread 'MainThread' (140440809830208):
+Traceback (most recent call last):
+
+  File "/usr/share/passenger/helper-scripts/wsgi-loader.py", line 391, in <module>
+    handler.main_loop()
+    │       └ <function RequestHandler.main_loop at 0x7fbae3114290>
+    └ <__main__.RequestHandler object at 0x7fbae3116750>
+
+  File "/usr/share/passenger/helper-scripts/wsgi-loader.py", line 199, in main_loop
+    socket_hijacked = self.process_request(env, input_stream, client)
+                      │    │               │    │             └ <socket.socket fd=6, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=/var/run/passenger-instreg/pas...
+                      │    │               │    └ <socket.socket fd=6, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=/var/run/passenger-instreg/pas...
+                      │    │               └ {'REQUEST_URI': '/rating', 'PATH_INFO': '/rating', 'SCRIPT_NAME': '', 'QUERY_STRING': '', 'REQUEST_METHOD': 'GET', 'SERVER_NA...
+                      │    └ <function RequestHandler.process_request at 0x7fbae31144d0>
+                      └ <__main__.RequestHandler object at 0x7fbae3116750>
+
+  File "/usr/share/passenger/helper-scripts/wsgi-loader.py", line 333, in process_request
+    result = self.app(env, start_response)
+             │    │   │    └ <function RequestHandler.process_request.<locals>.start_response at 0x7fbade681dd0>
+             │    │   └ {'REQUEST_URI': '/rating', 'PATH_INFO': '/rating', 'SCRIPT_NAME': '', 'QUERY_STRING': '', 'REQUEST_METHOD': 'GET', 'SERVER_NA...
+             │    └ <Flask '__init__'>
+             └ <__main__.RequestHandler object at 0x7fbae3116750>
+
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function RequestHandler.process_request.<locals>.start_response at 0x7fbade681dd0>
+           │    │        └ {'REQUEST_URI': '/rating', 'PATH_INFO': '/rating', 'SCRIPT_NAME': '', 'QUERY_STRING': '', 'REQUEST_METHOD': 'GET', 'SERVER_NA...
+           │    └ <function Flask.wsgi_app at 0x7fbadfeaf7a0>
+           └ <Flask '__init__'>
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x7fbadfeace60>
+               └ <Flask '__init__'>
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x7fbadfeacdd0>
+         └ <Flask '__init__'>
+> File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+           │    │              │    │           │   └ {}
+           │    │              │    │           └ <Request 'https://site-hunter.ru/rating' [GET]>
+           │    │              │    └ 'rating'
+           │    │              └ <Rule '/rating' (HEAD, OPTIONS, GET) -> rating>
+           │    └ {'static': <bound method _PackageBoundObject.send_static_file of <Flask '__init__'>>, 'admin_index': <function admin_index at...
+           └ <Flask '__init__'>
+
+  File "/var/www/u1087101/data/www/site-hunter.ru/routes.py", line 181, in rating
+    return render_template('rating.html', ratings=ratings)
+           │                                      └ <unprintable list object>
+           └ <function render_template at 0x7fbadfe9def0>
+
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+    │   │   │         │                      └ 'rating.html'
+    │   │   │         └ <function Environment.get_or_select_template at 0x7fbae1869680>
+    │   │   └ <flask.templating.Environment object at 0x7fbade896b10>
+    │   └ <Flask '__init__'>
+    └ <flask.ctx.AppContext object at 0x7fbadc5b6d90>
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           │    │            │                      │       └ None
+           │    │            │                      └ None
+           │    │            └ 'rating.html'
+           │    └ <function Environment.get_template at 0x7fbae1869560>
+           └ <flask.templating.Environment object at 0x7fbade896b10>
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+           │    │              │     │    │            └ None
+           │    │              │     │    └ <function Environment.make_globals at 0x7fbae18697a0>
+           │    │              │     └ <flask.templating.Environment object at 0x7fbade896b10>
+           │    │              └ 'rating.html'
+           │    └ <function Environment._load_template at 0x7fbae18694d0>
+           └ <flask.templating.Environment object at 0x7fbade896b10>
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+               │    │      │    │     │     └ {'range': <class 'range'>, 'dict': <class 'dict'>, 'lipsum': <function generate_lorem_ipsum at 0x7fbae1931a70>, 'cycler': <cl...
+               │    │      │    │     └ 'rating.html'
+               │    │      │    └ <flask.templating.Environment object at 0x7fbade896b10>
+               │    │      └ <function BaseLoader.load at 0x7fbae1276680>
+               │    └ <flask.templating.DispatchingJinjaLoader object at 0x7fbadc5b6690>
+               └ <flask.templating.Environment object at 0x7fbade896b10>
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
+    code = environment.compile(source, name, filename)
+           │           │       │       │     └ '/var/www/u1087101/data/www/site-hunter.ru/templates/rating.html'
+           │           │       │       └ 'rating.html'
+           │           │       └ '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML  4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">\n<html>\n <head>\n    <meta http...
+           │           └ <function Environment.compile at 0x7fbae1869170>
+           └ <flask.templating.Environment object at 0x7fbade896b10>
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+    │    │                       └ '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML  4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">\n<html>\n <head>\n    <meta http...
+    │    └ <function Environment.handle_exception at 0x7fbae18693b0>
+    └ <flask.templating.Environment object at 0x7fbade896b10>
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+    │        │                              └ '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML  4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">\n<html>\n <head>\n    <meta http...
+    │        └ <function rewrite_traceback_stack at 0x7fbadc563050>
+    └ <function reraise at 0x7fbae1d82290>
+  File "/var/www/u1087101/data/flaskenv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x7fbadc56c9b0>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ TemplateSyntaxError("Encountered unknown tag 'number_rating_element'. Jinja was looking for the following tags: 'endfor' or '...
+  File "/var/www/u1087101/data/www/site-hunter.ru/templates/rating.html", line 79, in template
+    {% number_rating_element += 1 %}
+
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'number_rating_element'. Jinja was looking for the following tags: 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.
+
+δΞ[2021-02-07T11:32:33.878760+0300] [INFO] ζRiblax: Администратор: Riblax добавил элемент рейтинга: CC
+
+δΞ[2021-02-07T11:32:41.569839+0300] [INFO] ζRiblax: Администратор: Riblax добавил элемент рейтинга: DD
+
+δΞ[2021-02-07T11:32:46.600469+0300] [INFO] ζRiblax: Администратор: Riblax удалил элемент рейтинга: DD
+
+δΞ[2021-02-07T11:32:47.561501+0300] [INFO] ζRiblax: Администратор: Riblax удалил элемент рейтинга: CC

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="ru"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="https://site-hunter.ru/" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    
+    <title>Главная - статьи</title>
+
+</head>
+
+<body>
+    
+    <noscript>В вашем браузере выключен JavaScript, для доступа на сайт его необходимо включить</noscript>
+    
+{% extends 'page_template/top_menu.html' %}
+
+{% block title %} <h1>Топ статей</h1>{% endblock %}
+        
+{% block content %}
+    {{ super() }}
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li class="alert alert-danger">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+        
+    
+                    
+    <div class="row" style="width:99%;">
+
+        
+            
+            {% for post in posts %}
+            
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style='margin-left: 0.01%;'>
+                {% if current_user.is_authenticated %}
+                    {% if user != False %}
+                        {% if user.login == post.login or user.admin_status > 1 %}
+                            <label style='padding: 30%; font-size: 125%;'>
+                                <i class="bi bi-trash" style='cursor: pointer;' onClick="document.location='deletePost/{{ post.id }}'" ></i>
+                            </label>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            </div>
+            
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style='margin-top: 5%; border: 1px solid rgb(136, 136, 136); cursor: pointer;'>
+                <center>
+                    <div class="row" style="width:99%;" onClick="document.location='post/{{ post.id }}'" >
+                        
+                            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-4" >
+        
+                                <h2 style=' width: auto; white-space: pre-wrap; word-break:break-all;' >{{ post.title }}</h2><br>
+                                    <a href='/profile/{{ post.login }}'> <h6 style = 'margin-left: 5%;'>{{ post.login }}</h6> </a>
+                            </div>
+                            <div class="col-xs-4 col-sm-8 col-md-6 col-lg-6" >
+        
+                                    <h6 style = 'margin-left: 5%; width: auto; white-space: pre-wrap; word-break:break-all;'>{{ post.about }}</h6>
+        
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2" >
+                                <h6 style = 'margin-top: 15%;'>{{ post.data }}</h6>
+                                <p><a href="#">Читать далее</a></p>
+                            </div>
+                    </div>
+                </center>
+                
+            </div>
+            {% endfor %}
+    </div>
+            
+{% endblock %}
+</body>
+</html>    

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+        
+        <title>Логи</title>
+        
+    </head>
+    
+    <body>
+        
+        
+        {% extends 'page_template/top_menu_admin.html' %}
+            
+        {% block content %}
+            {{ super() }} 
+        
+        <center><h1>Логи</h1></center>
+        
+        <div class='row' style='width: 99%;'>
+            
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+            
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <p>
+                    <pre style='white-space: pre-wrap; word-break:break-all;'>
+                        {{ logs_text|safe}}
+                    </pre>
+                </p>
+            </div>
+            
+        </div>
+        
+        
+    {% endblock %}
+    
+</body>
+</html>

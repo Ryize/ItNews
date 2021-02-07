@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <title>События</title>
+    
+ </head>
+ <body>
+     
+     <style>
+         #table_element{
+             width: 50%;
+             font-size: 125%;
+         }
+         
+         #title_rait {
+             white-space: pre-wrap;
+         }
+     </style>
+     
+{% extends 'page_template/top_menu.html' %}
+        
+    {% block content %}
+        {{ super() }}
+        
+        <center><h1>События</h1></center><br><br><br><br>
+        
+        <div class='row' style='overflow: hidden; width: 99%;'>
+            
+            {% for event in events %}
+                <div class = 'col-xs-1 col-sm-1 col-md-1 col-lg-1'></div>
+                
+                
+                    <div class = 'col-xs-4 col-sm-4 col-md-4 col-lg-4' >
+                            <div style='border: 1px solid rgb(136, 136, 136);'>
+                                <center style='background-color: #E9967A'>
+                                    {{ event.title }}
+                                </center>
+                                
+                                <p>
+                                    {{ event.text }}
+                                </p>
+                                
+                                <center>
+                                    <label style='background-color: #FAFAD2'>
+                                        {{ event.data }}
+                                    </label>
+                                </center>
+                            
+                            </div><br><br><br>
+                        
+                    </div>
+                    
+                    <div class = 'col-xs-1 col-sm-1 col-md-1 col-lg-1'></div>
+                
+        {% endfor %}
+                
+        </div>
+        
+        
+
+{% endblock %}

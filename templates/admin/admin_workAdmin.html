@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML  4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <title>Работа с Администраторами</title>
+    
+ </head>
+ <body>
+     
+    {% extends 'page_template/top_menu_admin.html' %}
+        
+    {% block content %}
+        {{ super() }} 
+        
+        <center>
+            
+            <h1>Работа с Администраторами</h1>
+            <h6>Разжаловать Администраторов можно только по соглосованию с высшим руководством!</h6>
+            
+        </center>
+        <br><br><br><br>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                {% for message in messages %}
+                
+                    {% if message and message == 'Успешная операция!' %}
+                        <li class="alert alert-success">{{ message }}</li>
+                        
+                    {% else %}
+                        <li class="alert alert-danger">{{ message }}</li>
+                        
+                    {% endif %}
+                
+                
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
+        {% if received_user.admin_status == 4 %}
+            <form action='adminWork/addAdmin' method='post'>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span style='height: 100%;' class="input-group-text" id="basic-addon1">A</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Login" aria-label="Username" aria-describedby="basic-addon1" name='login' required>
+                </div>
+                <br>
+                  <p>
+                      <select name="status" class="form-select" >
+                        <option selected value="1">Модератор</option>
+                        <option value="2">Администратор</option>
+                   </select><br>
+                   <center><input class='btn btn-primary' type="submit" value="Добавить Администратора"></center>
+                    </p> 
+            </form><br><br>
+            
+        {% elif received_user.admin_status == 5 %}
+            <form action='adminWork/addAdmin' method='post'>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span style='height: 100%;' class="input-group-text" id="basic-addon1">A</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Login" aria-label="Username" aria-describedby="basic-addon1" name='login'>
+                </div>
+                <br>
+                  <p>
+                      <select name="status" class="form-select" >
+                        <option selected value="1">Модератор</option>
+                        <option value="2">Администратор</option>
+                        <option value="3">Гл. Модератор</option>
+                        <option value="4">Гл. Администратор</option>
+                   </select><br>
+                   <center><input class='btn btn-primary' type="submit" value="Добавить Администратора"></center>
+                    </p> 
+            </form><br><br>
+            
+            
+        {% elif received_user.admin_status == 6 %}
+            <form action='adminWork/addAdmin' method='post'>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span style='height: 100%;' class="input-group-text" id="basic-addon1">A</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Login" aria-label="Username" aria-describedby="basic-addon1" name='login'>
+                </div>
+                <br>
+                  <p>
+                      <select name="status" class="form-select" >
+                        <option selected value="1">Модератор</option>
+                        <option value="2">Администратор</option>
+                        <option value="3">Гл. Модератор</option>
+                        <option value="4">Гл. Администратор</option>
+                        <option value="5">СЕО</option>
+                   </select><br>
+                   <center><input class='btn btn-primary' type="submit" value="Добавить Администратора"></center>
+                    </p> 
+            </form><br><br>
+            
+        {% endif %}
+     
+        <table class='table table-hover table-bordered'>
+            
+            <thead>
+               <tr>
+                <th>Логин</th>
+                <th>Email</th>
+                <th>Статус</th>
+                <th>Действие</th>
+               </tr>
+            </thead>
+            
+            <tbody>
+                
+                {% for user in users %}
+                
+                {% if user.admin_status == 0 %}
+                
+                {% else %}
+                
+                
+                    <tr>
+                        <td>{{ user.login }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            {% if user.admin_status == 1 %}
+                                {{ 'Модератор' }}
+                                
+                            {% elif user.admin_status == 2 %}
+                                Администратор
+                                
+                            {% elif user.admin_status == 3 %}
+                                Гл. Модератор
+                                
+                            {% elif user.admin_status == 4 %}
+                                Гл. Администратор
+                                
+                            {% elif user.admin_status == 5 %}
+                                СЕО
+                                
+                            {% elif user.admin_status == 6 %}
+                                Руководитель
+                                
+                            {% endif %}
+                        </td>
+                        <td> <a href='adminWork/deleteAdmin/{{ user.id }}' style='text-decoration: none; '> 
+                        
+                        {% if received_user.admin_status > user.admin_status %} 
+                            <p style='color: red;' >Разжаловать</p>
+                            
+                        {% endif %}
+                            
+                        </a> </td>
+                        
+                    </tr>
+                    
+                {% endif %}
+                
+                    
+                {% endfor %}
+              
+             </tbody>
+         
+     </table>
+     
+    {% endblock %}
+ </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML  4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <title>Рейтинг языков программирования</title>
+    
+ </head>
+ <body>
+     
+     <style>
+         #table_element{
+             width: 50%;
+             font-size: 125%;
+         }
+         
+         #title_rait {
+             white-space: pre-wrap;
+         }
+     </style>
+     
+{% extends 'page_template/top_menu.html' %}
+        
+    {% block content %}
+        {{ super() }}
+        
+        <center><h1>Рейтинг языков программирования</h1></center><br><br><br><br>
+        
+        <center>
+            <div class='row' style='width: 99%;'>
+                
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+                
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                
+                    <p id = 'title_rait'>
+                    Привет, если ты зашёл на эту страницу, то думаю тебе интерессно узнать о самых популярных и быстрорастущих языках, но прежде чем ты начнёшь, давай я тебе расскажу как работает наш рейтинг. <br>
+                    Наш рейтинг, основан на анализе других рейтингов(TIOBE, Habr, Yandex), а также на анализе рынка.<br>В наш топ попали только самые востребованные языки, на которых найти работу не составит труда. <br>
+                    Именно по этому, наш рейтинг является самым точным и правдивым из всех существующих, потому что акцент делался именно на потребности рынка.
+                    </p>
+                    
+                </div>
+                
+            </div>
+
+        </center>
+        
+        <br>
+        <br>
+        <br>
+     
+        <center>
+            <table style='width: 60%;' class='table table-hover table-bordered' >
+                
+            <thead>
+               <tr>
+                <th>Позиция языка в рейтинге</th>
+                <th>Название языка</th>
+                <th>Кол-во голосов</th>
+               </tr>
+            </thead>
+                
+                <tbody>
+                    
+                    {% for rating in ratings %}
+                    
+                        <tr>
+                            <td id = 'table_element'>{{ loop.index }}</td>
+                            <td id = 'table_element'>{{ rating.name }}</td>
+                            <td id = 'table_element'>{{ rating.voted }}%</td>
+                    
+                        </tr>
+                        
+                        
+                    {% endfor %}
+                  
+                 </tbody>
+             
+         </table>
+    </center>
+     
+    {% endblock %}
+ </body>
+</html>

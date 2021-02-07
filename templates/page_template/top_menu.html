@@ -1,0 +1,47 @@
+{% block content -%}
+<div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style = 'position: fixed; right: 1%; float: right; border: 1px solid rgb(136, 136, 136); backdrop-filter: blur(5px);'>
+        <center style='z-index: 100;'>
+            <h3>
+                <div style='opacity: 1; z-index: 100;'>
+                    <i class="bi bi-house" title = 'Главная' style = 'padding: 20px; cursor: pointer;' onClick="document.location='../'" ></i>
+                    <i class="bi bi-file-earmark-text" title = 'Написать статью' style = 'padding: 20px; cursor: pointer;' onClick="document.location='../write_article'" ></i>
+                    <i class="bi bi-code-slash" title = 'Рейтинг языков программирования' style = 'padding: 20px; cursor: pointer;' onClick="document.location='../rating'" ></i>
+                    
+                    {% if current_user.is_authenticated: %}
+                        <i class="bi bi-person" title = 'Профиль' style = 'padding: 20px; cursor: pointer;' onClick="document.location='../profile'" ></i>
+                    {% else %}
+                        <i class="bi bi-person" title='Войти в аккаунт' style = 'margin-left: 20px; margin-right: 20px; cursor: pointer;' onClick="document.location='../login'" ></i>
+                    {% endif %}
+                    
+                    <i class="bi bi-calendar2-day" title = 'Посмотреть события' style = 'padding: 20px; cursor: pointer;' onClick="document.location='../events'" ></i>
+                    
+                    {% if current_user.is_authenticated and user and user.admin_status != 0 %}
+                        <i class="bi bi-door-open" title = 'Админ панель' style = 'padding: 20px; cursor: pointer;' onClick="document.location='../admin'" ></i>
+                    {% endif %}
+                    
+                    {% if current_user.is_authenticated: %}
+                        <i class="bi bi-arrow-left-short" style = 'padding: 20px; cursor: pointer;' title = 'Выйти из аккаунта' onClick="document.location='../logout'"></i>
+                    {% endif %}
+                </div>
+                        
+            </h3>
+        </center>
+    </div>
+    
+    <br><br><br>
+    
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <center>
+                <h1>
+                    {% block title %}
+                    
+                    {% endblock %}
+                </h1>
+        </center>
+        
+    </div>
+    
+</div>
+            
+{% endblock -%}

@@ -1,0 +1,38 @@
+{% block content -%}
+        
+        
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style = 'position: fixed; right: 1%; float: right; border: 1px solid rgb(136, 136, 136); backdrop-filter: blur(5px);'>
+            <center>
+                <h3>
+                            <div style='opacity: 1; z-index: 100;'>
+                                <i class="bi bi-house" title = 'Главная' style = 'padding: 20px; cursor: pointer;' onClick="document.location='/admin'" ></i>
+                                <i class="bi bi-diagram-2-fill"  title = 'Работа с пользователями' style = 'padding: 20px; cursor: pointer;' onClick="document.location='../admin/userWork'" ></i>
+            
+                                {% if received_user and received_user.admin_status > 1 %}
+                                    <i class="bi bi-badge-ad-fill" title = 'Работа с Администрацией' style = 'padding: 20px; cursor: pointer;' onClick="document.location='../admin/adminWork'" ></i>
+                                    <i class="bi bi-calendar-check" title = 'Работа с событиями' style = 'padding: 20px; cursor: pointer;' onClick="document.location='../../admin/eventWork'" ></i>
+                                {% endif %}
+            
+                                {% if received_user and received_user.admin_status > 2 %}
+                                    <i class="bi bi-bar-chart" title = 'Работа с рейтингом' style = 'padding: 20px; cursor: pointer;' onClick="document.location='../admin/reitWork'" ></i>
+                                {% endif %}
+                                
+                                <i class="bi bi-archive" title = 'Логи' style = 'padding: 20px; cursor: pointer;' onClick="document.location='../admin/checkLogs'" ></i>
+            
+                </h3>
+            </center>
+        </div>
+    </center><br><br>
+    
+    <br><br>
+    
+    <a href = '../'>
+        <h1>
+            <div width='150%' style='position: fixed;'>
+                <i width="3em" height="3em" class = 'bi bi-arrow-90deg-left'></i>
+            </div>
+        </h1>
+    </a>
+    
+    
+{% endblock -%}
