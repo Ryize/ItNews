@@ -1,8 +1,7 @@
 from __init__ import *
 from buisness_logic import *
 
-def loger(msg):
-    
+def loger(msg): 
     received_user = get_user()  
     
     if not received_user:
@@ -14,7 +13,6 @@ def loger(msg):
         
     logger.info(msg)
     
-    
     return True
     
 def getLogs(name):
@@ -24,10 +22,7 @@ def getLogs(name):
     file_logs_text_splitString = file_logs_text.split('δ')
     file_logs_text_splitString = list(reversed(file_logs_text_splitString))
     
-    s = []
-    
-    for i in file_logs_text_splitString:
-        s.append(i)
+    s = [i for i in file_logs_text_splitString]
         
     file_logs_text_splitString = s
     
