@@ -26,8 +26,10 @@ class Post(db.Model):
     about = db.Column(db.Text, nullable=False)
     text = db.Column(db.Text, nullable=False)
     data = db.Column(db.Text, nullable=False)
-    def __init__(self, *args, **kwargs): #Не удалять, без неё не работает!
+    
+    def __init__(self, *args, **kwargs):
         super(Post, self).__init__(*args, **kwargs)
+        
     def __repr__(self):
         return '<Post id: {}, login: {}, title: {}, text: {}>'.format(self.id, self.login, self.title, self.text)
         
@@ -52,6 +54,7 @@ class Rating(db.Model):
     
     def __init__(self, *args, **kwargs):
         super(Rating, self).__init__(*args, **kwargs)
+        
     def __repr__(self):
         return '<Post id: {}, name: {}, voted: {}, position: {}>'.format(self.id, self.name, self.voted, self.position)
     
