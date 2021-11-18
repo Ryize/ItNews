@@ -172,20 +172,16 @@ def post(id):
 @application.route('/rating')
 @logger.catch
 def rating():
-    
-    user = get_user()
-    
     ratings = Rating.query.order_by(Rating.voted.desc()).all()
     
-    if not user:
+    if not get_user():
         return render_template('rating.html', ratings=ratings)
     
     return render_template('rating.html', ratings=ratings, user=user)
     
 @application.route('/events')
 @logger.catch
-def eventedddds():
-    
+def event(): 
     user = get_user()
     
     events = Event.query.order_by(Event.id.desc()).all()
@@ -256,7 +252,6 @@ def sendComment():
     new_comment = Comment(login=login, text=comment_text, data=data, post_id=post_id)
                         
     db.session.add(new_comment)
-        
     db.session.commit()
     
     return redirect('../post/'+str(post_id))
@@ -304,7 +299,6 @@ def accept_article():
 @login_required
 @logger.catch
 def profile():
-    
     user = get_user()
     if user:
         photo = user.avatar
@@ -315,14 +309,13 @@ def profile():
 @logger.catch
 def another_profile(login):
     user = get_user()
-    if user:
-        photo = user.avatar
     transmitted_user = User.query.filter_by(login=login).first()
     if not transmitted_user:
         flash('Профиль пользователя не найден!')
         return redirect(url_for('index'))
         
     if user:
+        photo = user.avatar
         if user.login == login:
             return redirect(url_for('profile'))
     transmitted_user_avatar = transmitted_user.avatar
@@ -353,7 +346,6 @@ def update_photo():
     avatar = 'user_avatars/'+file_name+file_extension
     
     if old_avatar != 'user_avatars/default.jpg':
-        
         directory = 'user_avatars/'
         user_avatars = os.listdir(directory)
         for i in user_avatars:
@@ -389,6 +381,7 @@ def save_change_profile():
             aboutme_no_spaces = ''.join(aboutme_no_spaces)
             if aboutme_no_spaces == '':
                 aboutme = ''
+                
         if request.form.get('gender') and request.form.get('status'):
             photo = user.avatar
             gender = request.form.get('gender')
@@ -427,8 +420,7 @@ def save_change_profile():
     
 @application.route('/login', methods = ['GET', 'POST'])
 @logger.catch
-def login_page():
-                
+def login_page():       
     login = request.form.get('login')
     password = request.form.get('password')
     if login and password:
@@ -471,7 +463,6 @@ def login_page():
                 
             return res
             
-            
         else:
             flash('Логин или пароль не верны!')
     else:
@@ -481,8 +472,7 @@ def login_page():
 
 @application.route('/register', methods = ['GET', 'POST'])
 @logger.catch
-def register():
-    
+def register():  
     login = request.form.get('login')
     password = request.form.get('password')
     password2 = request.form.get('password2')
@@ -516,9 +506,7 @@ def register():
             check_password = checking_characters(pattern, password)
             
             if check_login and check_password:
-                
-                if password == password2:
-                    
+                if password == password2:  
                     try:
                         
                         object_checking_email_temporary_table = Usering.query.filter_by(email=email).first()
@@ -551,6 +539,7 @@ def register():
                         db.session.commit()
                         
                         return render_template('check_email.html')
+                    
                     except Exception as exc:
                         flash('Такой логин уже существует! %s' % exc)
                         return render_template('register.html')
