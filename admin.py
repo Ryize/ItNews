@@ -55,13 +55,11 @@ def banned_user(id):
         
     if user_banned.banned == 0:
         user_banned.banned = 1
-        db.session.add(user_banned)
-        db.session.commit()
         
     elif user_banned.banned == 1:
         user_banned.banned = 0
-        db.session.add(user_banned)
-        db.session.commit()
+    db.session.add(user_banned)
+    db.session.commit()
         
     loger('Администратор: '+ received_user.login +' заблокировал аккаунт: '+user_banned.login)
     
@@ -86,13 +84,11 @@ def muted_user(id):
         
     if user_muted.muted == 0:
         user_muted.muted = 1
-        db.session.add(user_muted)
-        db.session.commit()
         
     elif user_muted.muted == 1:
         user_muted.muted = 0
-        db.session.add(user_muted)
-        db.session.commit()
+    db.session.add(user_muted)
+    db.session.commit()
     
     loger('Администратор: '+ received_user.login +' замутил аккаунт: '+user_muted.login)
     
